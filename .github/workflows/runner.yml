@@ -1,0 +1,22 @@
+name: cd
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-beta:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Speedtest CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y speedtest-cli
+
+      - name: Run Speedtest
+        run: speedtest-cli
